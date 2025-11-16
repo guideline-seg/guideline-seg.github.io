@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Guideline-Consistent Segmentation via Multi-Agent Refinement">
+  <!-- <meta name="keywords" content="Nerfies, D-NeRF, NeRF"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guideline-Consistent Segmentation via Multi-Agent Refinement</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <!-- <a class="navbar-link">
+          More Research
+        </a> -->
+        <!-- <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+
+  <!-- </div> --> 
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Guideline-Consistent Segmentation via Multi-Agent Refinement</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.vanshikavats.com/">Vanshika Vats</a>,</span>
+            <span class="author-block">
+              <a href="https://ashwanirathee.com/">Ashwani Rathee</a>,</span>
+            <span class="author-block">
+              <a href="https://users.soe.ucsc.edu/~davis/">James Davis</a>,</span>
+            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of California, Santa Cruz</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2509.04687"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2509.04687"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/vanshikavats9/guideline-seg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/comparison.png" alt="Guideline-Seg Teaser" style="width:100%; border-radius:8px;">
+      <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+         Qualitative comparison of our method with other state-of-the-art. Our method successfully complies with guidelines G1 [rows-(a),(c)], G2 [rows-(b),(d)], G3 and G4 [row-(e)].
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Semantic segmentation in real-world applications often requires not only accurate masks but also strict adherence 
+            to textual labeling guidelines. These guidelines are typically complex and long, and both human and automated labeling 
+            often fail to follow them faithfully. Traditional approaches depend on expensive task-specific retraining that must be 
+            repeated as the guidelines evolve. Although recent open-vocabulary segmentation methods excel with simple prompts, 
+            they often fail when confronted with sets of paragraph-length guidelines that specify intricate segmentation rules. 
+            To address this, we introduce a multi-agent, training-free framework that coordinates general-purpose vision-language
+            models within an iterative Worker-Supervisor refinement architecture. The Worker performs the segmentation, the Supervisor
+            critiques it against the retrieved guidelines, and a lightweight reinforcement learning stop policy decides when to 
+            terminate the loop, ensuring guideline-consistent masks while balancing resource use. Evaluated on the Waymo and ReasonSeg
+            datasets, our method notably outperforms state-of-the-art baselines, demonstrating strong generalization and instruction adherence.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Overview -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pipeline Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            The input image and textual guidelines undergo context construction to extract scenerelevant rules. 
+            This focused context is processed through an iterative VLM loop where the Worker segments and the Supervisor 
+            critiques and suggests improvements. The number of iterations is controlled by an adaptive iteration controller. The final output 
+            is a segmentation that faithfully adheres to long and detailed guidelines.
+          </p>
+        </div>
+        <figure class="image" style="margin-top: 20px;">
+      <img src="./static/images/full_pipeline_new2.png"
+           alt="Guideline-Seg Pipeline Overview"
+           style="width:100%; border-radius:8px;">
+        <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+          Overview of our pipeline.
+        </h2>
+    </figure>
+      </div>
+    </div>
+    <!--/ Overview -->
+
+    <!-- Results -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our results follow directly from the design. First, the context construction via image-specific guideline retrieval prevents instruction overload, so the VLM reasons over only
+            the rules relevant to the scene, explaining robustness on long
+            guidelines. Smart crop improves initial detections of small
+            or distant instances. Second, the Worker-Supervisor decomposition allows iterative correction of missed items and false
+            positives. Third, AiRC adaptively stops refinement to balance accuracy and resource usage, avoiding premature stops or unnecessary iterations.
+            Finally, keeping VLM and SAM frozen avoids dataset-specific overfitting, working unchangeably for both Waymo and ReasonSeg datasets.
+          </p>
+        </div>
+        <figure class="image" style="margin-top: 20px;">
+      <img src="./static/images/appendix_qual.png"
+           alt="waymo-results"
+           style="width:100%; border-radius:8px;">
+          <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+          Qualitative comparison on waymo guideline-consistent dataset.
+          </h2>
+    </figure>
+        <figure class="image" style="margin-top: 20px;">
+      <img src="./static/images/reasonseg_qual.png"
+           alt="reasonseg-results"
+           style="width:100%; border-radius:8px;">
+          <h2 class="subtitle has-text-centered" style="margin-top: 20px;">
+          Qualitative results on the ReasonSeg dataset over our Gemini-2.5 baseline. The textboxes represent the input reasoning text.
+          </h2>
+    </figure>
+      </div>
+    </div>
+    <!--/ Overview -->
+    
+
+
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{vats2025guidelineseg,
+  author    = {Vats, Vanshika and Rathee, Ashwani and Davis, James},
+  title     = {Guideline-Consistent Segmentation via Multi-Agent Refinement},
+  journal   = {AAAI Conference on Artificial Intelligence},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is adapted from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, and is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
